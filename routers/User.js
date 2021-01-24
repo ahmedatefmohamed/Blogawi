@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { register, login, getAll, getById, putOne, updateOne, deleteById } = require('../controllers/User');
 
-router.POST('/', async (req, res, next)=> {
+router.post('/', async (req, res, next)=> {
     const { body } = req;
     try {
         const user = await register(body);
@@ -14,7 +14,7 @@ router.POST('/', async (req, res, next)=> {
     }
 }),
 
-router.POST('/login', async (req, res, next)=> {
+router.post('/login', async (req, res, next)=> {
     const { body } = req;
     try {
         const user = await login(body);
@@ -25,7 +25,7 @@ router.POST('/login', async (req, res, next)=> {
     }
 }),
 
-router.GET('/', async (req, res, next)=> {
+router.get('/', async (req, res, next)=> {
     try {
         const users = await getAll();
         res.json(users); //RETURN PROMISE
@@ -35,7 +35,7 @@ router.GET('/', async (req, res, next)=> {
     }
 }),
 
-router.GET('/:id', async (req, res, next)=> {
+router.get('/:id', async (req, res, next)=> {
     const { params: {id} } = req;
     try {
         const user = await getById(id);
@@ -46,7 +46,7 @@ router.GET('/:id', async (req, res, next)=> {
     }
 }),
 
-router.Put('/:id', async (req, res, next)=> {
+router.put('/:id', async (req, res, next)=> {
     const { body, params: {id} } = req;
     try {
         const user = await putOne(...body, id);
@@ -68,7 +68,7 @@ router.Put('/:id', async (req, res, next)=> {
     }
   });
 
-router.Delete('/:id', async (req, res, next)=> {
+router.delete('/:id', async (req, res, next)=> {
     const {params: {id} } = req;
     try {
         const user = await deleteById(id);

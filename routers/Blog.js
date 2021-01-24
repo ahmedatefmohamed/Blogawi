@@ -4,7 +4,7 @@ const router = express.Router();
 const { create, getAll, getById, getByTitle, getByTag, getByAuthor, editById, deleteById } 
 = require('../controllers/Blog');
 
-router.POST('/', async (req, res, next)=> {
+router.post('/', async (req, res, next)=> {
     const { body, user: { id } } = req;
     try {
         const blog = await create({ ...body, userId: id });
@@ -15,7 +15,7 @@ router.POST('/', async (req, res, next)=> {
     }
 }),
 
-router.GET('/', async (req, res, next)=> {
+router.get('/', async (req, res, next)=> {
     const { user: {id} } = req;
     try {
         const blogs = await getAll({ userId: id });
@@ -26,7 +26,7 @@ router.GET('/', async (req, res, next)=> {
     }
 }),
 
-router.GET('/:id', async (req, res, next)=> {
+router.get('/:id', async (req, res, next)=> {
     const { params: {id} } = req;
     try {
         const blog = await getById(id);
@@ -37,7 +37,7 @@ router.GET('/:id', async (req, res, next)=> {
     }
 }),
 
-router.GET('/:title', async (req, res, next) => {
+router.get('/:title', async (req, res, next) => {
     const { params: {title} } = req;
     try {
         const blog = await getByTitle(title);
@@ -48,7 +48,7 @@ router.GET('/:title', async (req, res, next) => {
     }
 });
 
-router.GET('/:tag', async (req, res, next) => {
+router.get('/:tag', async (req, res, next) => {
     const { params: {tag} } = req;
     try {
         const blog = await getByTag(tag);
@@ -59,7 +59,7 @@ router.GET('/:tag', async (req, res, next) => {
     }
 });
 
-router.GET('/', async (req, res, next)=> {
+router.get('/', async (req, res, next)=> {
     const { user: {id} } = req;
     try {
         const blogs = await getByAuthor({ userId: id });
@@ -70,7 +70,7 @@ router.GET('/', async (req, res, next)=> {
     }
 }),
 
-router.Patch('/:id', async (req, res, next)=> {
+router.patch('/:id', async (req, res, next)=> {
     const {params: {id}, body } = req;
     try {
         const blog = await editById(id, ...body);
@@ -81,7 +81,7 @@ router.Patch('/:id', async (req, res, next)=> {
     }
 }),
 
-router.Delete('/:id', async (req, res, next)=> {
+router.delete('/:id', async (req, res, next)=> {
     const { params: { id } } = req;
     try {
         const blog = await deleteById(id);
