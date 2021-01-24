@@ -37,7 +37,7 @@ router.GET('/:id', async (req, res, next)=> {
     }
 }),
 
-router.GET('/:title', (req, res, next) => {
+router.GET('/:title', async (req, res, next) => {
     const { params: {title} } = req;
     try {
         const blog = await getByTitle(title);
@@ -48,7 +48,7 @@ router.GET('/:title', (req, res, next) => {
     }
 });
 
-router.GET('/:tag', (req, res, next) => {
+router.GET('/:tag', async (req, res, next) => {
     const { params: {tag} } = req;
     try {
         const blog = await getByTag(tag);

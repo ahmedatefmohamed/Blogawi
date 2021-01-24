@@ -57,7 +57,7 @@ router.Put('/:id', async (req, res, next)=> {
     }
 }),
 
-  router.patch('/:id', function (req, res, next){
+  router.patch('/:id', async (req, res, next) => {
     const { body, params: {id} } = req;
     try{
     const user =await updateOne(...body, id);
