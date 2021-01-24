@@ -5,9 +5,9 @@ const { create, getAll, getById, getByTitle, getByTag, getByAuthor, editById, de
 = require('../controllers/Blog');
 
 router.post('/', async (req, res, next)=> {
-    const { body, user: { id } } = req;
+    const { body } = req;
     try {
-        const blog = await create({ ...body, userId: id });
+        const blog = await create(...body);
         res.json(blog); //RETURN PROMISE
     } catch (err) {
         //SEND TO ERROR HANDELLER
