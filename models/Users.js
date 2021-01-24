@@ -33,12 +33,12 @@ const usersSchema = new Schema({
     }
   });
 
-userSchema.pre('save', function preSave(next) {
+usersSchema.pre('save', function preSave(next) {
   this.password = bcrypt.hashSync(this.password, 8);
   next();
 });
 
-userSchema.pre('findOneAndUpdate', function preSave(next) {
+usersSchema.pre('findOneAndUpdate', function preSave(next) {
   if (!this._update.password) {
     return;
   }
@@ -46,7 +46,7 @@ userSchema.pre('findOneAndUpdate', function preSave(next) {
   next();
 });
 
-userSchema.methods.validatePassword = function validatePassword(password) {
+usersSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
