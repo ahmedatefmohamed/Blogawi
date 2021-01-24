@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-
 const { Schema } = mongoose;
 
-const usersSchema = new Schema({
+const bcrypt = require('bcryptjs');
+
+
+const userSchema = new Schema({
 
     username: {
         type: String,
@@ -33,12 +34,12 @@ const usersSchema = new Schema({
     }
   });
 
-usersSchema.pre('save', function preSave(next) {
+userSchema.pre('save', function preSave(next) {
   this.password = bcrypt.hashSync(this.password, 8);
   next();
 });
 
-usersSchema.pre('findOneAndUpdate', function preSave(next) {
+userSchema.pre('findOneAndUpdate', function preSave(next) {
   if (!this._update.password) {
     return;
   }
@@ -46,9 +47,9 @@ usersSchema.pre('findOneAndUpdate', function preSave(next) {
   next();
 });
 
-usersSchema.methods.validatePassword = function validatePassword(password) {
+userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const UsersModel = mongoose.model('Users', usersSchema);
+const UsersModel = mongoose.model('Users', userSchema);
 module.exports = UsersModel;
