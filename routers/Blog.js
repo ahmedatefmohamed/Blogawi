@@ -14,7 +14,7 @@ const router = express();
 //         cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
 //     }​​​​​
 // }​​​​​);
-const authMiddleware = require('../middelwares/auth');
+// const authMiddleware = require('../middelwares/auth');
 
 // router.post('/', async (req, res, next) => {​​​​​
 //     console.log(req.user);
