@@ -3,7 +3,7 @@ const blog = require('./Blog');
 const user = require('./User');
 const authMiddleware = require('../middlewares/UserAuth');
 
-const router = express.Router();
+const router = express();
 router.use('/users', user);
 router.use('/blogs', authMiddleware, blog);
 
