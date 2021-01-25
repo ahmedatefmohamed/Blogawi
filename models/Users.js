@@ -40,7 +40,7 @@ userSchema.pre('save', function preSave(next) {
 
 userSchema.pre('findOneAndUpdate', function preSave(next) {
   if (!this._update.password) {
-    return;
+  next();
   }
   this._update.password = bcrypt.hashSync(this._update.password, 8);
   next();

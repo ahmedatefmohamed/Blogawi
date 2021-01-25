@@ -9,7 +9,7 @@ const blogsSchema = new Schema({
     tags: [String],
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'userModel',
+        ref: 'Users',
     }
     // status: {
     //     type: String,
