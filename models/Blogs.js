@@ -5,9 +5,12 @@ const blogsSchema = new Schema({
 
     title: { type: String, maxLength: 256, required: true, },
     body: String,
-    img: { data: Buffer, contentType: String },
-    author: String,
+    photo: String,
     tags: [String],
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
     // status: {
     //     type: String,
     //     enum: ['new', 'inProgress', 'done'],
@@ -18,11 +21,6 @@ const blogsSchema = new Schema({
     //     default: Date.now(),
     // },
     // updatedAt: Date,
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-    }
-
 });
 
 const blogsModel = mongoose.model('Blogs', blogsSchema);

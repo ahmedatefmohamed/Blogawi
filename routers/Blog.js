@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {​​​​​
         const {​​​​​ body, user: {​​​​​ id }​​​​​ }​​​​​ = req;
         if (req.file != undefined)
             body.photo = req.file.path;
-        create({​​​​​ ...body, auther: id }​​​​​).then(blog => res.json(blog)).catch(e => next(e));
+        create({​​​​​ ...body, author: id }​​​​​).then(blog => res.json(blog)).catch(e => next(e));
     }​​​​​);
 }​​​​​);
 
