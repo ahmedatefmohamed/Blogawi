@@ -4,16 +4,30 @@ const router = express.Router();
 const { create, getAll, getById, getByTitle, getByTag, getByAuthor, editById, deleteById } 
 = require('../controllers/Blog');
 
-router.post('/', async (req, res, next)=> {
-    const { body } = req;
-    try {
-        const blog = await create({body, userId: id });
-        res.json(blog); //RETURN PROMISE
-    } catch (err) {
-        //SEND TO ERROR HANDELLER
-        next(err);
-    }
-}),
+const router = express();
+const multer = require('multer');
+const path = require('path');
+const storage = multer.diskStorage({​​​​​
+    destination: function (req, file, cb) {​​​​​
+        cb(null, 'static/');
+    }​​​​​,
+    filename: function (req, file, cb) {​​​​​
+        cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+    }​​​​​
+}​​​​​);
+const authMiddleware = require('../middelwares/auth');
+
+router.post('/', async (req, res, next) => {​​​​​
+    console.log(req.user);
+    const upload = multer({​​​​​ storage: storage }​​​​​).single("photo");
+    upload(req, res, function (err) {​​​​​
+        console.log(req.user);
+        const {​​​​​ body, user: {​​​​​ id }​​​​​ }​​​​​ = req;
+        if (req.file != undefined)
+            body.photo = req.file.path;
+        create({​​​​​ ...body, auther: id }​​​​​).then(blog => res.json(blog)).catch(e => next(e));
+    }​​​​​);
+}​​​​​);
 
 router.get('/', async (req, res, next)=> {
     const { user: {id} } = req;
