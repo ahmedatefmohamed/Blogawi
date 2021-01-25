@@ -21,7 +21,7 @@ const login = async ({ username, password }) => {
       // match input password with user data using bcrypt
 };
 const getAll = () => User.find({}).exec();
-const getById = (id) => User.findById({id}).exec();
+const getById = (id) => User.findById(id).exec();
 const PutOne = (newData, id) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
 const updateOne = (newData, id) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
 const deleteById = (id) => User.findOneAndDelete(id, {new: true}).exec();

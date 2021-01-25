@@ -36,9 +36,9 @@ router.get('/', async (req, res, next)=> {
 }),
 
 router.get('/:id', async (req, res, next)=> {
-    const { params: {id} } = req;
+    const { params: {id}, body } = req;
     try {
-        const user = await getById(id);
+        const user = await getById(id, body);
         res.json(user); //RETURN PROMISE
     } catch (err) {
         //SEND TO ERROR HANDELLER
@@ -47,9 +47,9 @@ router.get('/:id', async (req, res, next)=> {
 }),
 
 router.put('/:id', async (req, res, next)=> {
-    const { body, params: {id} } = req;
+    const { params: {id}, body } = req;
     try {
-        const user = await putOne(...body, id);
+        const user = await putOne(id, body);
         res.json(user); //RETURN PROMISE
     } catch (err) {
         //SEND TO ERROR HANDELLER
@@ -58,9 +58,9 @@ router.put('/:id', async (req, res, next)=> {
 }),
 
   router.patch('/:id', async (req, res, next) => {
-    const { body, params: {id} } = req;
+    const { params: {id}, body } = req;
     try{
-    const user =await updateOne(...body, id);
+    const user =await updateOne(id, body);
     res.json(user); //RETURN PROMISE
     }catch(err){
         //SEND TO ERROR HANDELLER
