@@ -11,16 +11,6 @@ const blogsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Users',
     }
-    // status: {
-    //     type: String,
-    //     enum: ['new', 'inProgress', 'done'],
-    //     default: 'new',
-    // },
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now(),
-    // },
-    // updatedAt: Date,
 });
 
 const blogsModel = mongoose.model('Blogs', blogsSchema);
