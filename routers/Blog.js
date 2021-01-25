@@ -7,7 +7,7 @@ const { create, getAll, getById, getByTitle, getByTag, getByAuthor, editById, de
 router.post('/', async (req, res, next)=> {
     const { body } = req;
     try {
-        const blog = await create({ ...body, userId: id });
+        const blog = await create({body, userId: id });
         res.json(blog); //RETURN PROMISE
     } catch (err) {
         //SEND TO ERROR HANDELLER
