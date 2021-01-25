@@ -8,7 +8,7 @@ const router = express();
 router.post('/', async (req, res, next)=> {
     const { body, user: { id } } = req;
     try {
-        const blog = await create({ ...body, author: id });
+        const blog = await create({...body, author: id });
         res.json(blog); //RETURN PROMISE
     } catch (err) {
         //SEND TO ERROR HANDELLER
