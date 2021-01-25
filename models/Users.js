@@ -50,6 +50,6 @@ userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const userModel = mongoose.model('userModel', userSchema);
+const userModel = mongoose.model('Users', userSchema);
 
 module.exports = userModel;
