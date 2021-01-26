@@ -22,8 +22,8 @@ const login = async ({ username, password }) => {
 };
 const getAll = () => User.find({}).exec();
 const getById = (id) => User.findById(id).exec();
-const PutOne = (newData, id) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
-const updateOne = (newData, id) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
+const PutOne = (id, newData) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
+const updateOne = (id, newData) => User.findByIdAndUpdate(id, newData, {new: true}).exec();
 const deleteById = (id) => User.findOneAndDelete(id, {new: true}).exec();
 
 module.exports = { register, login, getAll, getById, PutOne, updateOne, deleteById };
